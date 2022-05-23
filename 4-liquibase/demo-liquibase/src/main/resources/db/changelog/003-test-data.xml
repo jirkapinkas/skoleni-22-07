@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.9.xsd">
+
+    <changeSet id="mychangeset003" author="myname">
+        <sql>
+            insert into item (name) values ('Stuff')
+        </sql>
+        <comment>
+            mycomment 003
+        </comment>
+        <rollback>
+            delete from item where name = 'Stuff'
+        </rollback>
+    </changeSet>
+
+    <changeSet id="mychangeset004" author="myname">
+        <sql>
+            insert into item (name) values ('Stuff 2')
+        </sql>
+        <comment>
+            mycomment 004
+        </comment>
+        <rollback>
+            delete from item where name = 'Stuff 2'
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
