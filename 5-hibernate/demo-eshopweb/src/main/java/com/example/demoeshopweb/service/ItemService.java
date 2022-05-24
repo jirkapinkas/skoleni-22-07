@@ -1,6 +1,8 @@
 package com.example.demoeshopweb.service;
 
+import com.example.demoeshopweb.dto.ItemDto;
 import com.example.demoeshopweb.entity.Item;
+import com.example.demoeshopweb.mapper.ItemMapper;
 import com.example.demoeshopweb.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +16,15 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public List<Item> findAll() {
-        return itemRepository.findAll();
+    private final ItemMapper itemMapper;
+
+    public List<ItemDto> findAll() {
+        return itemMapper.toDto(itemRepository.findAll());
     }
 
-    public Optional<Item> findById(int id) {
-        return itemRepository.findById(id);
+    public Optional<ItemDto> findById(int id) {
+        return itemRepository.findById(id)
+                .map(itemMapper::toDto);
     }
 
 }

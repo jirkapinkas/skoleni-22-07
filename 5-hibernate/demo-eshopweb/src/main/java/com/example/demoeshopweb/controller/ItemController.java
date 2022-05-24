@@ -1,5 +1,6 @@
 package com.example.demoeshopweb.controller;
 
+import com.example.demoeshopweb.dto.ItemDto;
 import com.example.demoeshopweb.entity.Item;
 import com.example.demoeshopweb.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,12 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping
-    public List<Item> items() {
+    public List<ItemDto> items() {
         return itemService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Item> item(@PathVariable int id) {
+    public Optional<ItemDto> item(@PathVariable int id) {
         return itemService.findById(id);
     }
 
