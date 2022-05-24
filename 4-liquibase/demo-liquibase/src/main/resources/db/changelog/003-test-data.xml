@@ -33,4 +33,18 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="mychangeset005" author="myname">
+        <sql>
+            create table stuff (
+                id bigserial not null primary key
+            )
+        </sql>
+        <comment>
+            created stuff table
+        </comment>
+        <rollback>
+            drop table stuff
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
