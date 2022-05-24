@@ -2,7 +2,7 @@ Pred spustenim aplikace je nutne zavolat:
 
     # spusti postgres
     docker compose up -d
-    # vytvori schema "mydb"
+    # vytvori databaze "mydb"
     docker exec -it demo-liquibase-db-1 createdb mydb -U postgres
 
 Spring Boot pri startu automaticky aplikuje vsechny changesety, ktere jsou definovane nebo referencovane v souboru `db.changelog-master.yaml`
