@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Item {
+@Table(name = "item")
+public class ItemWithoutCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +21,5 @@ public class Item {
     private String description;
 
     private double price;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
 
 }
