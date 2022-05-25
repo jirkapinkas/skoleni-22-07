@@ -8,7 +8,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NamedEntityGraph(
+        name = Item.ENTITY_GRAPH_ITEM_CATEGORY,
+        attributeNodes = @NamedAttributeNode("category")
+)
 public class Item {
+
+    public static final String ENTITY_GRAPH_ITEM_CATEGORY = "graph.Item.category";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,6 +4,7 @@ import com.example.demoeshopweb.entity.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,20 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
+
+    @Query("select i from Item i left join fetch i.category")
+    List<Item> findAllFetchCategories();
+
+    @Query("select i from Item i left join fetch i.category where i.id = ?1")
+    Optional<Item> findByIdFetchCategory(int id);
+
+    @EntityGraph(Item.ENTITY_GRAPH_ITEM_CATEGORY)
+    @Override
+    List<Item> findAll();
+
+    @EntityGraph(Item.ENTITY_GRAPH_ITEM_CATEGORY)
+    @Override
+    Optional<Item> findById(Integer integer);
 
     // operace JpaRepository:
     // findXXX() operace nad sebou maji automaticky @Transactional(readOnly = true)

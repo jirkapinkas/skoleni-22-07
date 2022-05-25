@@ -7,6 +7,7 @@ import com.example.demoeshopweb.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +21,16 @@ public class ItemService {
 
     private final ItemMapper itemMapper;
 
+    @Transactional(readOnly = true)
     public List<ItemDto> findAll() {
+//        return itemMapper.toDto(itemRepository.findAllFetchCategories());
         return itemMapper.toDto(itemRepository.findAll());
     }
 
+    @Transactional(readOnly = true)
     public Optional<ItemDto> findById(int id) {
+//        return itemRepository.findByIdFetchCategory(id)
+//                .map(itemMapper::toDto);
         return itemRepository.findById(id)
                 .map(itemMapper::toDto);
     }

@@ -7,7 +7,8 @@ public record ItemDto(
         int id,
         String name,
         String description,
-        double price
+        double price,
+        CategoryDto category
 ) {
 }
 
